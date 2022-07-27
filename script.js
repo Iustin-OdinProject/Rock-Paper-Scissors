@@ -1,16 +1,31 @@
 
+let numberOfGames = prompt("How many games do you want to play?");
+for(let i=1; i<= numberOfGames; i++)
+{
+    let playerSelection = prompt("Choose your weapon! (\"rock\",\"paper\",\"scissors\"");
+    
+    if(playerSelection != ""){
+    console.log(game(playerSelection.toLowerCase(), getComputerChoice()))
+    }
+    else console.log("Something got messed up!")
+}
 let playerSelection = prompt("Choose your weapon! (\"rock\",\"paper\",\"scissors\"");
 if(playerSelection != ""){
+    
     console.log(game(playerSelection.toLowerCase(), getComputerChoice()))
 }
 function game(player,computer){
-    if(player == "rock"){
-        if(computer == "rock")
-            return "tie";
-        else if(computer == "paper")
-            return `computer wins! ${computer} beats ${player}`;
-        else if(computer == "scissors")
-            return `you win! ${player} beats ${computer} `;
+    switch (player){
+        case "rock":
+            switch (computer){
+                case "rock":
+                    return `tie`;
+                case "paper":
+                    return `computer wins! ${computer} beats ${player}`;
+                case "scissors":
+                    return `you win! ${player} beats ${computer} `;
+            }
+        
     }
     if(player == "paper"){
         if(computer == "rock")
