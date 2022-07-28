@@ -81,27 +81,6 @@ function game(player,computer){
                     return 0;
                 }
             }
-<<<<<<< HEAD
-=======
-        case "paper":
-            switch (computer){
-                case "rock":
-                    return `you win! ${player} beats ${computer} `;
-                case "paper":
-                    return `tie`;
-                case "scissors":
-                    return `computer wins! ${computer} beats ${player}`;
-            }
-        case "scissors":
-            switch (computer){
-                case "rock":
-                    return `computer wins! ${computer} beats ${player}`;
-                case "paper":
-                    return `you win! ${player} beats ${computer} `;
-                case "scissors":
-                    return 'tie';
-            }
->>>>>>> fcdc8f7f3d200e6923ca29964c470eb9f8700259
     }
 }
 function setWinner(winner){
