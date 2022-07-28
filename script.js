@@ -25,23 +25,24 @@ function game(player,computer){
                 case "scissors":
                     return `you win! ${player} beats ${computer} `;
             }
-        
-    }
-    if(player == "paper"){
-        if(computer == "rock")
-            return `you win! ${player} beats ${computer} `;
-        else if(computer == "paper")
-            return `tie`;
-        else if(computer == "scissors")
-            return `computer wins! ${computer} beats ${player}`;
-    }
-    if(player == "scissors"){
-        if(computer == "rock")
-            return `computer wins! ${computer} beats ${player}`;
-        else if(computer == "paper")
-            return `you win! ${player} beats ${computer} `;
-        else if(computer == "scissors")
-            retunr `tie`;
+        case "paper":
+            switch (computer){
+                case "rock":
+                    return `you win! ${player} beats ${computer} `;
+                case "paper":
+                    return `tie`;
+                case "scissors":
+                    return `computer wins! ${computer} beats ${player}`;
+            }
+        case "scissors":
+            switch (computer){
+                case "rock":
+                    return `computer wins! ${computer} beats ${player}`;
+                case "paper":
+                    return `you win! ${player} beats ${computer} `;
+                case "scissors":
+                    return 'tie';
+            }
     }
 }
 function getComputerChoice(){
