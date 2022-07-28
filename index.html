@@ -2,9 +2,86 @@
 <html lang="en">
     <head>
         <title>Rock Paper Scissors</title>
-        <script type="text/javascript" src="script.js"></script>
+        <script type="text/javascript" src="script.js" defer></script>
     </head>
     <body>
+        <style>
+            .game{
+                padding-top: 50px;
+                margin: auto;
+                background-color: aliceblue;
+                display: flex;
+                flex-flow: column;
+                align-items: center;
+                width: 1000px;
+                height: 600px;
+            }
+            .flex_child{
+                flex: 0,1;
+            }
+            .buttons{
+                display: flex;
+                gap:10px;
+                margin: 30px 10px;
+            }
+            .buttons button{
+                padding: 5px 10px;
+                font-size: 18px;
+                border: 0px;
+                background-color: aliceblue;
+            }
+            .buttons button > img{
+                width: 150px;
+            }
+            .score{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+            }
+            #player_score{
+                margin-right: 15px;
+            }
+            h2 {
+                margin: 0px;
+            }
+            .round{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 0px 0px 20px 0px;
+            }
+            #win{
+                visibility: hidden;
 
+            }
+            #restartGame{
+                padding: 10px 30px;
+                font-size: 16px;
+            }
+            #tie{
+                visibility: hidden;
+            }
+        </style>
+        <div class="game">
+            <h1 class="flex_child">Let's see if the Randomness God will beat you!</h1>
+            <h2 class="flex_child">Choose your weapon ;)</h2>
+            <div class="flex_child buttons">
+                <button onclick="initGame('rock')" id="rock"><img src="https://icon-library.com/images/spock-icon/spock-icon-4.jpg"></button>
+                <button onclick="initGame('paper')" id="paper"><img src="https://icon-library.com/images/spock-icon/spock-icon-3.jpg"></button>
+                <button onclick="initGame('scissors')" id="scissors"><img src="https://icon-library.com/images/rock-paper-scissors-icon/rock-paper-scissors-icon-5.jpg"></button>
+            </div>
+            <div class="round">
+                <h2>Rounds played: <span id="noRounds">0</span></h2>
+                <h2 id="win"><span id="winner"></span> wins this round.</h2>
+                
+            </div>
+            <h2 id="tie">Tie.</h2>
+            <h2 class="flex_child" id="score">Score is:</h2>
+            <div class="score">
+                <h3>Player: <span id="player_score">0</span> Computer: <span id="computer_score">0</span></h3>
+            </div>
+            <button class="flex_child" id="restartGame" onclick="restartGame()">Restart?</button>
+        </div>
     </body>
 </html>

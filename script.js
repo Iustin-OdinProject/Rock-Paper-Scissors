@@ -1,49 +1,117 @@
-
-let numberOfGames = prompt("How many games do you want to play?");
-for(let i=1; i<= numberOfGames; i++)
-{
-    let playerSelection = prompt("Choose your weapon! (\"rock\",\"paper\",\"scissors\"");
-    
-    if(playerSelection != ""){
-    console.log(game(playerSelection.toLowerCase(), getComputerChoice()))
-    }
-    else console.log("Something got messed up!")
-}
-let playerSelection = prompt("Choose your weapon! (\"rock\",\"paper\",\"scissors\"");
-if(playerSelection != ""){
-    
-    console.log(game(playerSelection.toLowerCase(), getComputerChoice()))
+let timesPlayed=0, computerScore = 0, playerScore = 0;
+const tie = document.querySelector('#tie');
+const roundsPlayed = document.querySelector('#noRounds');
+const player_score = document.querySelector('#player_score');
+const computer_score = document.querySelector('#computer_score');
+const winnerLabel = document.querySelector('#winner');
+const win = document.querySelector('#win');
+function initGame(player){
+    if(computerScore >= 5 || playerScore >= 5)
+        if(confirm("Game has ended. Do you want to start another"))
+            restartGame()
+        else
+            {}
+    else
+    {
+        timesPlayed +=1;
+        roundsPlayed.textContent = timesPlayed;
+        computer_score.textContent = computerScore;
+        player_score.textContent = playerScore;
+        tie.style.visibility = 'hidden';
+        if(game(player.toLowerCase(), getComputerChoice())!=0)
+            alert("Something is wrong.. the computer is cheating!!!");
+        }
 }
 function game(player,computer){
     switch (player){
         case "rock":
             switch (computer){
                 case "rock":
-                    return `tie`;
+                {
+                    tie.style.visibility = 'visible';
+                    win.style.visibility = 'hidden';
+                    return 0;
+                }
                 case "paper":
-                    return `computer wins! ${computer} beats ${player}`;
+                {
+                    setWinner('computer')
+                    return 0;
+                }
                 case "scissors":
-                    return `you win! ${player} beats ${computer} `;
+                {
+                    setWinner('player')
+                    return 0;
+                }
             }
-        
-    }
-    if(player == "paper"){
-        if(computer == "rock")
-            return `you win! ${player} beats ${computer} `;
-        else if(computer == "paper")
-            return `tie`;
-        else if(computer == "scissors")
-            return `computer wins! ${computer} beats ${player}`;
-    }
-    if(player == "scissors"){
-        if(computer == "rock")
-            return `computer wins! ${computer} beats ${player}`;
-        else if(computer == "paper")
-            return `you win! ${player} beats ${computer} `;
-        else if(computer == "scissors")
-            retunr `tie`;
+        case "paper":
+            switch (computer){
+                case "rock":
+                {
+                    setWinner('player')
+                    return 0;
+                }
+                case "paper":
+                {
+                    tie.style.visibility = 'visible';
+                    win.style.visibility = 'hidden';
+                    return 0;
+                }
+                case "scissors":
+                {
+                    setWinner('computer')
+                    return 0;
+                }
+            }
+        case "scissors":
+            switch (computer){
+                case "rock":
+                {
+                    setWinner('computer')
+                    return 0;
+                }
+                case "paper":
+                {
+                    setWinner('player')
+                    return 0;
+                }
+                case "scissors":
+                {
+                    tie.style.visibility = 'visible';
+                    win.style.visibility = 'hidden';
+                    return 0;
+                }
+            }
     }
 }
+function setWinner(winner){
+    win.style.visibility = 'visible';
+    switch(winner){
+        case 'player':
+        {
+            playerScore +=1;
+            winnerLabel.textContent = 'Player';
+            break;
+        }
+        case 'computer':
+        {
+            computerScore +=1;
+            winnerLabel.textContent = 'Computer';
+            break;
+        }
+    }    
+    computer_score.textContent = computerScore;
+    player_score.textContent = playerScore;
+}
+function restartGame(){
+    computerScore=0;
+    playerScore=0;
+    timesPlayed=0;
+    computer_score.textContent = computerScore;
+    player_score.textContent = playerScore;
+    roundsPlayed.textContent = timesPlayed;
+    tie.style.visibility = 'hidden'; 
+}
+
 function getComputerChoice(){
     var randomNumber = Math.floor(Math.random() * 3);
     switch(randomNumber){
